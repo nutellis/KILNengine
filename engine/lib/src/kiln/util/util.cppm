@@ -3,12 +3,12 @@ export module kiln.util;
 export import kiln.util.algorithms;
 export import kiln.util.concepts;
 export import kiln.util.containers;
+export import kiln.util.memory;
 export import kiln.util.type_traits;
 
 export import kiln.util.any_cast;
 export import kiln.util.Bool;
 export import kiln.util.contracts;
-export import kiln.util.Deleter;
 export import kiln.util.Dummy;
 export import kiln.util.EnumMask;
 export import kiln.util.FunctionWrapper;

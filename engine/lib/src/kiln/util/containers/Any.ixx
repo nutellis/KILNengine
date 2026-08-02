@@ -17,7 +17,7 @@ import kiln.util.concepts.storable;
 import kiln.util.concepts.strips_to;
 import kiln.util.containers.SmallBuffer;
 import kiln.util.contracts;
-import kiln.util.LifeCycleEraseMechanism;
+import kiln.util.memory.LifeCycleEraseMechanism;
 import kiln.util.reflection;
 import kiln.util.type_traits.always_true;
 import kiln.util.type_traits.const_like;

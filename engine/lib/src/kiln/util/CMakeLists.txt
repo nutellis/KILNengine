@@ -1,6 +1,7 @@
 add_subdirectory(algorithms)
 add_subdirectory(concepts)
 add_subdirectory(containers)
+add_subdirectory(memory)
 add_subdirectory(type_traits)
 
 target_sources(${PROJECT_NAME} PRIVATE
@@ -24,12 +25,10 @@ target_sources(${PROJECT_NAME} PUBLIC
         any_cast.ixx
         Bool.ixx
         contracts.ixx
-        Deleter.ixx
         Dummy.ixx
         EnumMask.ixx
         FunctionWrapper.ixx
         Lazy.ixx
-        LifeCycleEraseMechanism.ixx
         Overloaded.ixx
         reflection.ixx
         reinterpret_any_cast.ixx

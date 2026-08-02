@@ -30,7 +30,7 @@ inline constexpr std::size_t index_of_v{
 
 template <std::size_t, typename T>
 struct Node {
-    T data{};
+    T value{};
 };
 
 template <typename IndexSequence_T, typename... Ts>
@@ -61,7 +61,7 @@ public:
             -> forward_like_t<Ts... [index_T], Self_T>
         {
             return std::forward_like<Self_T>(
-                self.internal::template Node<index_T, Ts...[index_T]>::data
+                self.internal::template Node<index_T, Ts...[index_T]>::value
             );
         }
 
@@ -73,7 +73,7 @@ public:
     {
         constexpr static std::size_t index{ index_of_v<T, Ts...> };
         return std::forward_like<Self_T>(
-            self.internal::template Node<index, Ts...[index]>::data
+            self.internal::template Node<index, Ts...[index]>::value
         );
     }
 };

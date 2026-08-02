@@ -9,7 +9,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 import kiln.util.containers.Any;
-import kiln.util.Deleter;
+import kiln.util.memory.Deleter;
 
 namespace kiln::util {
 

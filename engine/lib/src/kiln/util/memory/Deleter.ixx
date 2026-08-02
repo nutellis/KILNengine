@@ -2,7 +2,7 @@ module;
 
 #include <memory_resource>
 
-export module kiln.util.Deleter;
+export module kiln.util.memory.Deleter;
 
 namespace kiln::util {
 

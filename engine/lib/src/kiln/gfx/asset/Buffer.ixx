@@ -7,7 +7,7 @@ module;
 
 export module kiln.gfx.asset.Buffer;
 
-import kiln.util.Deleter;
+import kiln.util.memory.Deleter;
 
 namespace kiln::gfx::asset {
 
