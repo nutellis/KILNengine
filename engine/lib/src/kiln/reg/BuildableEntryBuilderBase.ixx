@@ -6,4 +6,4 @@ namespace kiln::reg::internal {
 
 export class BuildableEntryBuilderBase : public EntryBuilderBase {};
 
-}   // namespace kiln::reg
+}   // namespace kiln::reg::internal

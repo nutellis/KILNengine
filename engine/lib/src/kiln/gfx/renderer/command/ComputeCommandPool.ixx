@@ -1,6 +1,6 @@
 module;
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.ComputeCommandPool;
 
@@ -18,16 +18,18 @@ namespace kiln::gfx::renderer {
 
 export class ComputeCommandPool : public CommandPoolBase {
 public:
+    // clang-format off
     explicit ComputeCommandPool(
-        [[kiln_lifetimebound]] const Device& device,
-        vulkan::QueueFamilyIndex             queue_family_index,
-        util::EnumMask<CommandPoolFlags>     flags = CommandPoolFlags::eNone
+        kiln_lifetimebound const Device& device,
+        vulkan::QueueFamilyIndex         queue_family_index,
+        util::EnumMask<CommandPoolFlags> flags = CommandPoolFlags::eNone
     );
+    // clang-format on
 
     auto allocate_primary(
         util::EnumMask<CommandBufferUsageFlags> usage_flags
         = CommandBufferUsageFlags::eNone
-    ) [[kiln_lifetimebound]] -> ComputeCommandBuffer;
+    ) kiln_lifetimebound -> ComputeCommandBuffer;
 };
 
 }   // namespace kiln::gfx::renderer

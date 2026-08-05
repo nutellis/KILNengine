@@ -21,7 +21,6 @@ import kiln.reg.BuildDirector;
 import kiln.reg.EntryTraits;
 import kiln.util.containers.MoveOnlyFunction;
 import kiln.util.contracts;
-import kiln.util.Deleter;
 
 namespace kiln::exec {
 

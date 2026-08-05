@@ -1,6 +1,6 @@
 module;
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.TransferCommandPool;
 
@@ -18,12 +18,13 @@ namespace kiln::gfx::renderer {
 
 export class TransferCommandPool : public CommandPoolBase {
 public:
-    TransferCommandPool(
-        [[kiln_lifetimebound]]
-        const Device&                    device,
+    // clang-format off
+    explicit TransferCommandPool(
+        kiln_lifetimebound const Device& device,
         vulkan::QueueFamilyIndex         queue_family_index,
         util::EnumMask<CommandPoolFlags> flags = CommandPoolFlags::eNone
     );
+    // clang-format on
 
     auto allocate_primary(
         util::EnumMask<CommandBufferUsageFlags> usage_flags

@@ -13,9 +13,10 @@ import kiln.gfx.vulkan.structure_chain.part_of_comprehensive_feature_struct_c;
 namespace kiln::gfx::vulkan {
 
 export template <feature_struct_c FeatureStruct_T>
-constexpr auto
-    erase_physical_device_features(FeatureStruct_T& inout, const FeatureStruct_T& in)
-        -> void;
+constexpr auto erase_physical_device_features(
+    FeatureStruct_T&       inout,
+    const FeatureStruct_T& in
+) -> void;
 
 export template <
     comprehensive_feature_struct_c ComprehensiveFeatureStruct_T,
@@ -30,8 +31,10 @@ constexpr auto erase_physical_device_features(
 
 namespace kiln::gfx::vulkan {
 
-constexpr auto
-    erase_feature_struct_member(const vk::StructureType, const vk::StructureType) -> void
+constexpr auto erase_feature_struct_member(
+    const vk::StructureType,
+    const vk::StructureType
+) -> void
 {
 }
 
@@ -46,9 +49,10 @@ constexpr auto erase_feature_struct_member(vk::Bool32& inout, const vk::Bool32 i
 }
 
 template <feature_struct_c FeatureStruct_T>
-constexpr auto
-    erase_physical_device_features(FeatureStruct_T& inout, const FeatureStruct_T& in)
-        -> void
+constexpr auto erase_physical_device_features(
+    FeatureStruct_T&       inout,
+    const FeatureStruct_T& in
+) -> void
 {
     auto& [... inout_members]{ inout };
     const auto& [... in_members]{ in };

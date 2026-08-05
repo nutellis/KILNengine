@@ -37,9 +37,9 @@ RenderSurface::RenderSurface(
 )
     : m_surface{ std::move(surface) },
       m_device_ref{ device },
-      m_surface_format{
-          pick_surface_format(vulkan::check_result(device.physical_device().getSurfaceFormatsKHR(m_surface)))
-      },
+      m_surface_format{ pick_surface_format(
+          vulkan::check_result(device.physical_device().getSurfaceFormatsKHR(m_surface))
+      ) },
       m_number_of_frames_in_flight{ number_of_frames_in_flight },
       m_vsync{ vsync }
 {

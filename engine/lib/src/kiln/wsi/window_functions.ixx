@@ -39,7 +39,8 @@ export [[nodiscard]]
 auto is_key_pressed(const Context&, WindowHandle window, Key key) -> bool;
 
 export auto set_title(const Context&, WindowHandle window, const char* title) -> void;
-export auto set_cursor_mode(const Context&, WindowHandle window, CursorMode cursor_mode) -> void;
+export auto set_cursor_mode(const Context&, WindowHandle window, CursorMode cursor_mode)
+    -> void;
 
 /*
  * This function should also take a context,

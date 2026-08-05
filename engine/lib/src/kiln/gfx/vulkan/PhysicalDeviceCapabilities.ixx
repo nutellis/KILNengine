@@ -118,7 +118,9 @@ auto PhysicalDeviceCapabilities::contains_features(
         {
             return m_features.find<vk::PhysicalDeviceVulkan11Features>()
                 .transform(
-                    [&features](const vk::PhysicalDeviceVulkan11Features& contained) -> bool
+                    [&features](
+                        const vk::PhysicalDeviceVulkan11Features& contained
+                    ) -> bool
                     {
                         vk::PhysicalDeviceVulkan11Features requested{};
                         merge_physical_device_features(requested, features);
@@ -134,7 +136,9 @@ auto PhysicalDeviceCapabilities::contains_features(
         {
             return m_features.find<vk::PhysicalDeviceVulkan12Features>()
                 .transform(
-                    [&features](const vk::PhysicalDeviceVulkan12Features& contained) -> bool
+                    [&features](
+                        const vk::PhysicalDeviceVulkan12Features& contained
+                    ) -> bool
                     {
                         vk::PhysicalDeviceVulkan12Features requested{};
                         merge_physical_device_features(requested, features);
@@ -150,7 +154,9 @@ auto PhysicalDeviceCapabilities::contains_features(
         {
             return m_features.find<vk::PhysicalDeviceVulkan13Features>()
                 .transform(
-                    [&features](const vk::PhysicalDeviceVulkan13Features& contained) -> bool
+                    [&features](
+                        const vk::PhysicalDeviceVulkan13Features& contained
+                    ) -> bool
                     {
                         vk::PhysicalDeviceVulkan13Features requested{};
                         merge_physical_device_features(requested, features);
@@ -166,7 +172,9 @@ auto PhysicalDeviceCapabilities::contains_features(
         {
             return m_features.find<vk::PhysicalDeviceVulkan14Features>()
                 .transform(
-                    [&features](const vk::PhysicalDeviceVulkan14Features& contained) -> bool
+                    [&features](
+                        const vk::PhysicalDeviceVulkan14Features& contained
+                    ) -> bool
                     {
                         vk::PhysicalDeviceVulkan14Features requested{};
                         merge_physical_device_features(requested, features);

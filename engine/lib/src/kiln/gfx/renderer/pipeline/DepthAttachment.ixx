@@ -3,7 +3,7 @@ module;
 #include <optional>
 #include <utility>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.pipeline.DepthAttachment;
 
@@ -13,7 +13,9 @@ namespace kiln::gfx::renderer {
 
 export class DepthAttachment {
 public:
-    explicit DepthAttachment([[kiln_lifetimebound]] const vk::raii::ImageView& image_view);
+    // clang-format off
+    explicit DepthAttachment(kiln_lifetimebound const vk::raii::ImageView& image_view);
+    // clang-format on
 
     [[nodiscard]]
     auto image_view() const noexcept -> const vk::raii::ImageView&;

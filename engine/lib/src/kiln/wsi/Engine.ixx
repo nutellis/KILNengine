@@ -2,7 +2,7 @@ module;
 
 #include <functional>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.wsi.Engine;
 
@@ -23,9 +23,7 @@ public:
 
 export class Engine : EnginePrecondition {
 public:
-    explicit Engine(
-        [[kiln_lifetimebound]] EventConsumerQueueInterface& event_consume_queue
-    );
+    explicit Engine(kiln_lifetimebound EventConsumerQueueInterface& event_consume_queue);
 
 
     [[nodiscard]]

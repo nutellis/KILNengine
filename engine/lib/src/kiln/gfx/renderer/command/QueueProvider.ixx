@@ -9,7 +9,7 @@ module;
 
 #include <magic_enum/magic_enum.hpp>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.QueueProvider;
 
@@ -57,25 +57,23 @@ public:
 
 
     [[nodiscard]]
-    auto graphics_queue() noexcept [[kiln_lifetimebound]]
-    -> std::optional<GraphicsQueueRef>;
+    auto graphics_queue() noexcept kiln_lifetimebound -> std::optional<GraphicsQueueRef>;
     [[nodiscard]]
-    auto compute_queue() noexcept [[kiln_lifetimebound]]
-    -> std::optional<ComputeQueueRef>;
+    auto compute_queue() noexcept kiln_lifetimebound -> std::optional<ComputeQueueRef>;
     [[nodiscard]]
-    auto host_to_device_transfer_queue() noexcept [[kiln_lifetimebound]]
-    -> std::optional<TransferQueueRef>;
+    auto host_to_device_transfer_queue() noexcept kiln_lifetimebound
+        -> std::optional<TransferQueueRef>;
 
     template <std::derived_from<QueueRefBase> QueueRef_T>
     [[nodiscard]]
-    auto graphics_queue_as() [[kiln_lifetimebound]] -> std::optional<QueueRef_T>;
+    auto graphics_queue_as() kiln_lifetimebound -> std::optional<QueueRef_T>;
     template <std::derived_from<QueueRefBase> QueueRef_T>
     [[nodiscard]]
-    auto compute_queue_as() [[kiln_lifetimebound]] -> std::optional<QueueRef_T>;
+    auto compute_queue_as() kiln_lifetimebound -> std::optional<QueueRef_T>;
     template <std::derived_from<QueueRefBase> QueueRef_T>
     [[nodiscard]]
-    auto host_to_device_transfer_queue_as() [[kiln_lifetimebound]]
-    -> std::optional<QueueRef_T>;
+    auto host_to_device_transfer_queue_as() kiln_lifetimebound
+        -> std::optional<QueueRef_T>;
 
     template <typename RankFunc_T>
         requires std::same_as<

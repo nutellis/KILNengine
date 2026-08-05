@@ -3,7 +3,7 @@ module;
 #include <cstdint>
 #include <functional>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.QueueRefBase;
 
@@ -28,7 +28,7 @@ public:
     auto get() const noexcept -> Queue&;
 
 protected:
-    explicit QueueRefBase([[kiln_lifetimebound]] Queue& queue);
+    explicit QueueRefBase(kiln_lifetimebound Queue& queue);
 
     auto submit(const CommandBufferBase& command_buffer, const SubmitInfo& info) const
         -> void;

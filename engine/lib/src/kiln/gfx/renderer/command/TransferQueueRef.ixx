@@ -1,6 +1,6 @@
 module;
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.TransferQueueRef;
 
@@ -21,7 +21,7 @@ public:
 export class TransferQueueRef : private TransferQueueRefPrecondition,
                                 public QueueRefBase {
 public:
-    explicit TransferQueueRef([[kiln_lifetimebound]] Queue& queue);
+    explicit TransferQueueRef(kiln_lifetimebound Queue& queue);
 
     auto submit(
         const TransferCommandBuffer& command_buffer,

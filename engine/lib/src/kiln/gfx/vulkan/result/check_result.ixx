@@ -57,7 +57,9 @@ struct CheckResult {
         using type = std::conditional_t<
             sizeof...(expected_result_codes_T) == 0,
             Value_T,
-            std::expected<Value_T, std::variant<TypedResultCode<expected_result_codes_T>...>>>;
+            std::expected<
+                Value_T,
+                std::variant<TypedResultCode<expected_result_codes_T>...>>>;
     };
 
     template <typename Result_T>
@@ -115,14 +117,16 @@ namespace kiln::gfx::vulkan {
 constexpr auto represents_precondition_violation(const vk::Result result_code) noexcept
     -> bool
 {
-    return result_category_from(result_code) == ResultCategory::ePreconditionViolationError;
+    return result_category_from(result_code)
+        == ResultCategory::ePreconditionViolationError;
 }
 
 template <typename T>
 [[nodiscard]]
 constexpr auto represents_precondition_violation(const vk::ResultValue<T>& result) -> bool
 {
-    return result_category_from(result.result) == ResultCategory::ePreconditionViolationError;
+    return result_category_from(result.result)
+        == ResultCategory::ePreconditionViolationError;
 }
 
 template <typename T>
@@ -132,7 +136,8 @@ constexpr auto represents_precondition_violation(
 ) -> bool
 {
     return !result.has_value()
-        && result_category_from(result.error()) == ResultCategory::ePreconditionViolationError;
+        && result_category_from(result.error())
+               == ResultCategory::ePreconditionViolationError;
 }
 
 [[nodiscard]]

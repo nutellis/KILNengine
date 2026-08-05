@@ -4,7 +4,7 @@ module;
 #include <span>
 #include <utility>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.pipeline.GraphicsPipelineBuilder;
 
@@ -18,11 +18,13 @@ namespace kiln::gfx::renderer {
 
 export class GraphicsPipelineBuilder {
 public:
+    // clang-format off
     explicit GraphicsPipelineBuilder(
-        [[kiln_lifetimebound]] const vk::raii::PipelineLayout& layout,
-        [[kiln_lifetimebound]] const ShaderModule&             vertex_shader_module,
-        [[kiln_lifetimebound]] const ShaderModule&             fragment_shader_module
+        kiln_lifetimebound const vk::raii::PipelineLayout& layout,
+        kiln_lifetimebound const ShaderModule&             vertex_shader_module,
+        kiln_lifetimebound const ShaderModule&             fragment_shader_module
     );
+    // clang-format on
 
 
     [[nodiscard]]
@@ -32,8 +34,8 @@ public:
     auto set_cull_mode(this Self_T&& self, vk::CullModeFlags cull_mode) -> Self_T&&;
     template <typename Self_T>
     auto set_color_formats(
-        this Self_T&&                                      self,
-        [[kiln_lifetimebound]] std::span<const vk::Format> formats
+        this Self_T&&      self,
+        kiln_lifetimebound std::span<const vk::Format> formats
     ) -> Self_T&&;
     template <typename Self_T>
     auto set_depth_format(this Self_T&& self, vk::Format format) -> Self_T&&;

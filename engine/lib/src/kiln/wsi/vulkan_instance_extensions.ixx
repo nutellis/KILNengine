@@ -6,7 +6,7 @@ module;
 
 #include <GLFW/glfw3.h>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.wsi.vulkan_instance_extensions;
 
@@ -16,9 +16,11 @@ namespace kiln::wsi {
 
 export struct VulkanSurfaceCreationNotSupportedError {};
 
+// clang-format off
 export [[nodiscard]]
-auto vulkan_instance_extensions([[kiln_lifetimebound]] const Context&)
+auto vulkan_instance_extensions(kiln_lifetimebound const Context&)
     -> std::expected<std::span<const char* const>, VulkanSurfaceCreationNotSupportedError>
+// clang-format on
 {
     uint32_t           count{};
     const char** const extension_names{ glfwGetRequiredInstanceExtensions(&count) };

@@ -11,7 +11,7 @@ module;
 
 #include <fastgltf/core.hpp>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module examples.frustum_culling.workflow.GltfModelLoader;
 
@@ -44,18 +44,22 @@ public:
     GltfModelLoader(const GltfModelLoader&, const allocator_type&);
     GltfModelLoader(GltfModelLoader&&, const allocator_type&);
 
+    // clang-format off
     explicit GltfModelLoader(
-        [[kiln_lifetimebound]] const fastgltf::Asset& model,
-        std::size_t                                   scene_index,
-        const glm::mat4x4& transform = glm::identity<glm::mat4x4>()
+        kiln_lifetimebound const fastgltf::Asset& model,
+        std::size_t                               scene_index,
+        const glm::mat4x4&                        transform = glm::identity<glm::mat4x4>()
     );
+    // clang-format on
+    // clang-format off
     explicit GltfModelLoader(
         std::allocator_arg_t,
-        const allocator_type&                         allocator,
-        [[kiln_lifetimebound]] const fastgltf::Asset& model,
-        std::size_t                                   scene_index,
-        const glm::mat4x4& transform = glm::identity<glm::mat4x4>()
+        const allocator_type&                     allocator,
+        kiln_lifetimebound const fastgltf::Asset& model,
+        std::size_t                               scene_index,
+        const glm::mat4x4&                        transform = glm::identity<glm::mat4x4>()
     );
+    // clang-format on
 
 
     [[nodiscard]]
@@ -88,23 +92,23 @@ public:
     auto set_instance_index_offset(uint32_t instance_index_offset) -> void;
 
     [[nodiscard]]
-    auto instance_draw_command_index_writer() const noexcept [[kiln_lifetimebound]]
-    -> kiln::gfx::renderer::LazyCopy;
+    auto instance_draw_command_index_writer() const noexcept kiln_lifetimebound
+        -> kiln::gfx::renderer::LazyCopy;
     [[nodiscard]]
-    auto instance_sphere_bounding_volume_writer() const noexcept [[kiln_lifetimebound]]
-    -> kiln::gfx::renderer::LazyCopy;
+    auto instance_sphere_bounding_volume_writer() const noexcept kiln_lifetimebound
+        -> kiln::gfx::renderer::LazyCopy;
     [[nodiscard]]
-    auto geometry_writer() const noexcept [[kiln_lifetimebound]]
-    -> kiln::gfx::renderer::LazyCopy;
+    auto geometry_writer() const noexcept kiln_lifetimebound
+        -> kiln::gfx::renderer::LazyCopy;
     [[nodiscard]]
-    auto material_writer() const noexcept [[kiln_lifetimebound]]
-    -> kiln::gfx::renderer::LazyCopy;
+    auto material_writer() const noexcept kiln_lifetimebound
+        -> kiln::gfx::renderer::LazyCopy;
     [[nodiscard]]
-    auto instance_writer() const noexcept [[kiln_lifetimebound]]
-    -> kiln::gfx::renderer::LazyCopy;
+    auto instance_writer() const noexcept kiln_lifetimebound
+        -> kiln::gfx::renderer::LazyCopy;
     [[nodiscard]]
-    auto draw_command_writer() const noexcept [[kiln_lifetimebound]]
-    -> kiln::gfx::renderer::LazyCopy;
+    auto draw_command_writer() const noexcept kiln_lifetimebound
+        -> kiln::gfx::renderer::LazyCopy;
 
 private:
     struct Offsets {

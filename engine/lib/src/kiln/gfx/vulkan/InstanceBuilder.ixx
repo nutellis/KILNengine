@@ -5,7 +5,7 @@ module;
 #include <optional>
 #include <vector>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.vulkan.InstanceBuilder;
 
@@ -58,16 +58,20 @@ public:
     InstanceBuilder(const InstanceBuilder&, const allocator_type&);
     InstanceBuilder(InstanceBuilder&&, const allocator_type&);
 
+    // clang-format off
     explicit InstanceBuilder(
-        const CreateInfo&                               create_info,
-        [[kiln_lifetimebound]] const vk::raii::Context& context
+        const CreateInfo&        create_info,
+        kiln_lifetimebound const vk::raii::Context& context
     );
+    // clang-format on
+    // clang-format off
     explicit InstanceBuilder(
         std::allocator_arg_t,
-        const allocator_type&                           allocator,
-        const CreateInfo&                               create_info,
-        [[kiln_lifetimebound]] const vk::raii::Context& context
+        const allocator_type&    allocator,
+        const CreateInfo&        create_info,
+        kiln_lifetimebound const vk::raii::Context& context
     );
+    // clang-format on
 
 
     [[nodiscard]]

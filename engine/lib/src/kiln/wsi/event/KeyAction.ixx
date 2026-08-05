@@ -9,8 +9,8 @@ namespace kiln::wsi {
 export enum struct KeyAction
 {
     eRelease = GLFW_RELEASE,
-    ePress = GLFW_PRESS,
-    eRepeat = GLFW_REPEAT,
+    ePress   = GLFW_PRESS,
+    eRepeat  = GLFW_REPEAT,
 };
 
 }   // namespace kiln::wsi

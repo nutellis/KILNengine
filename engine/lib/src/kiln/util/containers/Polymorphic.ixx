@@ -10,7 +10,7 @@ module;
 #include <variant>
 
 #include "kiln/util/contract_macros.hpp"
-#include "kiln/util/no_unique_address.hpp"
+#include "kiln/util/memory/no_unique_address.hpp"
 
 export module kiln.util.containers.Polymorphic;
 
@@ -815,7 +815,7 @@ struct EraseMechanism<Interface_T, is_move_only_T, size_T, alignment_T>::VTable:
         .type_name         = type_name,
         .uses_small_buffer = uses_small_buffer,
         .swap              = swap,
-        .reset           = reset,
+        .reset             = reset,
     };
 };
 

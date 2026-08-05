@@ -6,7 +6,7 @@ module;
 #include <span>
 #include <utility>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.pipeline.ColorAttachment;
 
@@ -16,13 +16,15 @@ namespace kiln::gfx::renderer {
 
 export class ColorAttachment {
 public:
-    explicit ColorAttachment([[kiln_lifetimebound]] const vk::raii::ImageView& image_view);
+    // clang-format off
+    explicit ColorAttachment(kiln_lifetimebound const vk::raii::ImageView& image_view);
+    // clang-format on
 
     [[nodiscard]]
     auto image_view() const noexcept -> const vk::raii::ImageView&;
     [[nodiscard]]
-    auto clear_value() const noexcept [[kiln_lifetimebound]]
-    -> std::optional<std::span<const float, 4>>;
+    auto clear_value() const noexcept kiln_lifetimebound
+        -> std::optional<std::span<const float, 4>>;
 
     template <typename Self_T>
     auto set_clear_value(this Self_T&&, std::span<const float, 4> value) noexcept

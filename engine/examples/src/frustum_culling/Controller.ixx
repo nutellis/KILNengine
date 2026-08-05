@@ -19,7 +19,10 @@ namespace demo {
 
 export class Controller {
 public:
-    explicit Controller(const kiln::wsi::WindowProxy& window, double movement_speed = 1) noexcept;
+    explicit Controller(
+        const kiln::wsi::WindowProxy& window,
+        double                        movement_speed = 1
+    ) noexcept;
 
 
     auto update(Camera& camera) const noexcept -> void;

@@ -7,7 +7,7 @@ module;
 
 #include <vk_mem_alloc.h>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.memory.Allocator;
 
@@ -27,11 +27,12 @@ namespace kiln::gfx::renderer {
 
 export class Allocator {
 public:
-    Allocator(
-        const vulkan::Instance& instance,
-        [[kiln_lifetimebound]]
-        const Device& device
+    // clang-format off
+    explicit Allocator(
+        const vulkan::Instance&          instance,
+        kiln_lifetimebound const Device& device
     );
+    // clang-format on
 
 
     [[nodiscard]]

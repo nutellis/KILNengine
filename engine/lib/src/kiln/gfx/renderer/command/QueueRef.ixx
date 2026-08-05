@@ -1,6 +1,6 @@
 module;
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.QueueRef;
 
@@ -17,7 +17,7 @@ namespace kiln::gfx::renderer {
 
 export class QueueRef : public QueueRefBase {
 public:
-    explicit QueueRef([[kiln_lifetimebound]] Queue& queue);
+    explicit QueueRef(kiln_lifetimebound Queue& queue);
 
     [[nodiscard]]
     auto as_compute_queue() const -> ComputeQueueRef;

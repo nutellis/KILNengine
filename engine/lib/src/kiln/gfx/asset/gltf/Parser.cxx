@@ -26,10 +26,8 @@ auto make_options(const bool generate_indices) noexcept -> fastgltf::Options
     return result;
 }
 
-auto Parser::load(
-    const std::filesystem::path& filepath,
-    const bool                   generate_indices
-) -> std::optional<fastgltf::Asset>
+auto Parser::load(const std::filesystem::path& filepath, const bool generate_indices)
+    -> std::optional<fastgltf::Asset>
 {
     fastgltf::GltfFileStream file{ filepath };
     if (!file.isOpen())

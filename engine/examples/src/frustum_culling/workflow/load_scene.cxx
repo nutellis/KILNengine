@@ -12,7 +12,7 @@ module;
 #include <fastgltf/types.hpp>
 
 #include <kiln/util/contract_macros.hpp>
-#include <kiln/util/lifetimebound.hpp>
+#include <kiln/util/memory/lifetimebound.hpp>
 
 module examples.frustum_culling.workflow.load_scene;
 
@@ -697,10 +697,12 @@ auto lazy_copy_draw_command_count(const std::span<const GltfModelLoader> model_l
     };
 }
 
+// clang-format off
 [[nodiscard]]
 auto lazy_copy_draw_commands(
-    [[kiln_lifetimebound]] const std::span<GltfModelLoader> model_loaders
+    kiln_lifetimebound const std::span<GltfModelLoader> model_loaders
 ) -> kiln::gfx::renderer::LazyCopy
+// clang-format on
 {
     return kiln::gfx::renderer::LazyCopy{
         [draw_count = draw_count_from(model_loaders),

@@ -2,7 +2,7 @@ module;
 
 #include <functional>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.pipeline.ComputePipelineBuilder;
 
@@ -16,10 +16,12 @@ namespace kiln::gfx::renderer {
 
 export class ComputePipelineBuilder {
 public:
+    // clang-format off
     explicit ComputePipelineBuilder(
-        [[kiln_lifetimebound]] const vk::raii::PipelineLayout& layout,
-        [[kiln_lifetimebound]] const ShaderModule&             shader_module
+        kiln_lifetimebound const vk::raii::PipelineLayout& layout,
+        kiln_lifetimebound const ShaderModule&             shader_module
     );
+    // clang-format on
 
 
     [[nodiscard]]

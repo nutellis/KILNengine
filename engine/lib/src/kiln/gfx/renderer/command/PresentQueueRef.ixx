@@ -2,7 +2,7 @@ module;
 
 #include <variant>
 
-#include "kiln/util/lifetimebound.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.command.PresentQueueRef;
 
@@ -21,7 +21,7 @@ public:
 
 export class PresentQueueRef : private PresentQueueRefPrecondition, public QueueRefBase {
 public:
-    explicit PresentQueueRef([[kiln_lifetimebound]] Queue& queue);
+    explicit PresentQueueRef(kiln_lifetimebound Queue& queue);
 
     auto present(const vk::PresentInfoKHR& present_info) const -> std::variant<
         vulkan::TypedResultCode<vk::Result::eSuccess>,

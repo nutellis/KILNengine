@@ -68,7 +68,6 @@ private:
 
 template <>
 struct kiln::reg::EntryTraits<kiln::gfx::renderer::Device> {
-    static auto describe_build(
-        BuildDirector<gfx::renderer::Device>& build_director
-    ) -> void;
+    static auto describe_build(BuildDirector<gfx::renderer::Device>& build_director)
+        -> void;
 };

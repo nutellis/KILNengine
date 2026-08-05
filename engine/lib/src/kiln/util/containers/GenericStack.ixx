@@ -37,9 +37,7 @@ export template <move_only_any_c Any_T = BasicMoveOnlyAny<0>>
     requires(Any_T::size() == 0)
 class BasicGenericStack {
 public:
-    using Any = Any_T;
-
-    // required for interfacing with the standard
+    using Any            = Any_T;
     using allocator_type = std::pmr::polymorphic_allocator<>;
 
 
@@ -54,7 +52,6 @@ public:
     auto operator=(BasicGenericStack&&) noexcept -> BasicGenericStack& = default;
 
 
-    // required for interfacing with the standard
     [[nodiscard]]
     auto get_allocator() const noexcept -> allocator_type;
 

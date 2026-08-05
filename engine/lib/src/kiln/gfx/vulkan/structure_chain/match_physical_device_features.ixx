@@ -21,8 +21,10 @@ constexpr auto match_physical_device_features(
 
 namespace kiln::gfx::vulkan {
 
-constexpr auto
-    match_feature_struct_member(const vk::StructureType, const vk::StructureType) -> bool
+constexpr auto match_feature_struct_member(
+    const vk::StructureType,
+    const vk::StructureType
+) -> bool
 {
     return true;
 }
