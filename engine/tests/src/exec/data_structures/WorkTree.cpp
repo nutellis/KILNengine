@@ -9,11 +9,11 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-import kiln.exec.data_structures.ReleaseWorkContract;
-import kiln.exec.data_structures.WorkContract;
-import kiln.exec.data_structures.WorkID;
-import kiln.exec.data_structures.WorkContinuation;
-import kiln.exec.data_structures.WorkTree;
+import kiln.exec_old.data_structures.ReleaseWorkContract;
+import kiln.exec_old.data_structures.WorkContract;
+import kiln.exec_old.data_structures.WorkID;
+import kiln.exec_old.data_structures.WorkContinuation;
+import kiln.exec_old.data_structures.WorkTree;
 import kiln.util.contracts;
 import kiln.util.reflection;
 
@@ -45,7 +45,7 @@ TEST_CASE(test_name)
                     {
                         executed = true;
                         return WorkContinuation::eRelease;
-                    }   //
+                    },
                 }
             ),
         };
@@ -73,7 +73,7 @@ TEST_CASE(test_name)
                             return WorkContinuation::eReschedule;
                         }
                         return WorkContinuation::eRelease;
-                    }   //
+                    },
                 }
             ),
         };
@@ -183,7 +183,7 @@ TEST_CASE(test_name)
                             return WorkContinuation::eReschedule;
                         }
                         return WorkContinuation::eRelease;
-                    }   //
+                    },
                 }
             );
 

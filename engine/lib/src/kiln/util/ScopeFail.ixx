@@ -27,8 +27,8 @@ public:
 private:
     Rollback_T m_rollback;
     int        m_uncaught_exceptions{
-        []
-        {
+               []
+               {
 #ifdef __cpp_constexpr_exceptions
             static_assert(false, "FIXME: Exceptions are now constexpr");
 #endif

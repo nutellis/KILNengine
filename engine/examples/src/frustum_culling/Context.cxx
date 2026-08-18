@@ -267,7 +267,7 @@ auto Context::run(
                 limit_fps,
                 disable_culling,
                 grid_size
-            );   //
+            );
         },
     };
     run_main_thread_loop(running, main_thread);
@@ -568,9 +568,11 @@ auto Context::run_main_thread_loop(
     {
         main_thread.wsi_engine.wait_events();
 
-        for (std::optional<MainThread::Task> task{ main_thread.work_queue.try_pop() };
-             task.has_value();
-             task = main_thread.work_queue.try_pop())
+        for (
+            std::optional<MainThread::Task> task{ main_thread.work_queue.try_pop() };
+            task.has_value();
+            task = main_thread.work_queue.try_pop()
+        )
         {
             std::move (*task)(main_thread);
         }

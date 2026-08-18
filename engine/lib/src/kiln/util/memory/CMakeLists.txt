@@ -15,4 +15,5 @@ target_sources(${PROJECT_NAME} PUBLIC
         construct_at_using_allocator.ixx
         Deleter.ixx
         LifeCycleEraseMechanism.ixx
+        uses_allocator_construction_args.ixx
 )

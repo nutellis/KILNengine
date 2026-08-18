@@ -132,11 +132,13 @@ auto DeviceBuilder::build(
         physical_device_filter.required_capabilities()
     };
 
-    for (const std::vector<vk::ExtensionProperties> supported_extension_properties{
-             vulkan::check_result(physical_device.enumerateDeviceExtensionProperties()),
-         };
-         const util::StringLiteral optional_extension :
-         m_optional_capabilities.extensions())
+    for (
+        const std::vector<vk::ExtensionProperties> supported_extension_properties{
+            vulkan::check_result(physical_device.enumerateDeviceExtensionProperties()),
+        };
+        const util::StringLiteral optional_extension :
+        m_optional_capabilities.extensions()
+    )
     {
         if (std::ranges::any_of(
                 supported_extension_properties,
@@ -196,8 +198,8 @@ auto DeviceBuilder::build(
     };
 
     return Device{
-        std::allocator_arg,   //
-        memory_arena.pool_allocator(),
+        std::allocator_arg,
+        memory_arena.pool_allocator(),   //
         std::move(physical_device),
         std::move(device),
         std::move(capabilities),

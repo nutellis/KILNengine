@@ -45,8 +45,10 @@ auto model_descriptions_from(
     result.reserve(grid_size * grid_size * grid_size);
     const glm::vec3 distance{ extent_of(*model_aabb) * 2.f };
     const glm::vec3 start_offset{ -static_cast<float>(grid_size - 1) * distance / 2.f };
-    for (const auto indices{ std::views::iota(0u, grid_size) };
-         const auto [x, y, z] : std::views::cartesian_product(indices, indices, indices))
+    for (
+        const auto indices{ std::views::iota(0u, grid_size) };
+        const auto [x, y, z] : std::views::cartesian_product(indices, indices, indices)
+    )
     {
         const glm::vec3 offset{
             start_offset.x + static_cast<float>(x) * distance.x,
@@ -88,9 +90,9 @@ auto load_scene(
                             std::format(
                                 "Model could not be loaded from {}",
                                 model_filepath.generic_string()
-                            )   //
+                            ),
                         };
-                    }   //
+                    },
                 }
             )
     };

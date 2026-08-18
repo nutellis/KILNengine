@@ -226,7 +226,7 @@ constexpr auto to_string(const vk::Result result) -> const char*
 
             return result_string_map
                 .try_emplace(
-                    result,   //
+                    result,
                     util::Lazy{ [result] { return vk::to_string(result); } }
                 )
                 .first->second.c_str();

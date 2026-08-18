@@ -245,6 +245,10 @@ concept storable_in_polymorphic_c
    && ::kiln::util::storable_c<T>
    && (Polymorphic_T::is_move_only() || std::copyable<T>);
 
+export template <typename T, typename Polymorphic_T>
+concept decays_to_storable_in_polymorphic_c
+    = storable_in_polymorphic_c<std::decay_t<T>, Polymorphic_T>;
+
 export template <decayed_c T, typename Polymorphic_T>
     requires storable_in_polymorphic_c<T, std::remove_cvref_t<Polymorphic_T>>
 [[nodiscard]]
@@ -623,7 +627,7 @@ struct EraseMechanism<Interface_T, is_move_only_T, size_T, alignment_T>::VTable:
                     {
                         destination_allocator.delete_object(new_object);
                     }
-                }   //
+                },
             };
 
             destination_erase_mechanism.drop(destination_allocator, destination_storage);
@@ -906,7 +910,7 @@ struct EraseMechanism<Interface_T, is_move_only_T, 0, alignment_T>::VTable::Oper
             [&] noexcept -> void
             {
                 destination_allocator.delete_object(new_object);   //
-            }   //
+            },
         };
 
         if (destination_storage.handle != nullptr)

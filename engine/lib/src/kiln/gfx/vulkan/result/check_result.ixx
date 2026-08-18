@@ -378,7 +378,7 @@ constexpr auto CheckResult<expected_result_codes_T...>::make_result_from_value(
     {
         return Result<Value_T, vk::Result::eSuccess, expected_result_codes_T...>{
             std::move(result.value),
-            result.result   //
+            result.result
         };
     }
 }

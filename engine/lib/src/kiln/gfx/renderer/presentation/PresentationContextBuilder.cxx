@@ -23,18 +23,20 @@ auto make_presentation_context_builder(
     DeviceBuilder&           device_builder
 ) -> PresentationContextBuilder
 {
-    for (const char* extension_name :
-         wsi::vulkan_instance_extensions(wsi_context)
-             .value_or(
-                 util::Lazy{
-                     [] -> std::span<const char* const>
-                     {
-                         throw PresentationContextBuilderFailedError{
-                             "Vulkan surface creation is not supported"
-                         };
-                     }   //
-                 }
-             ))
+    for (
+        const char* extension_name :
+        wsi::vulkan_instance_extensions(wsi_context)
+            .value_or(
+                util::Lazy{
+                    [] -> std::span<const char* const>
+                    {
+                        throw PresentationContextBuilderFailedError{
+                            "Vulkan surface creation is not supported"
+                        };
+                    },
+                }
+            )
+    )
     {
         {
             instance_builder.enable_extension(

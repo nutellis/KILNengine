@@ -33,8 +33,8 @@ Device::Device(
     std::pmr::vector<vulkan::QueueFamilyInfo>&& queue_family_infos
 )
     : Device{
-          std::allocator_arg,   //
-          std::pmr::get_default_resource(),
+          std::allocator_arg,
+          std::pmr::get_default_resource(),   //
           std::move(physical_device),
           std::move(logical_device),
           std::move(capabilities),

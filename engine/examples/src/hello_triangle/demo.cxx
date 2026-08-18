@@ -49,7 +49,7 @@ public:
     {
         return Context{
             std::allocator_arg,
-            memory_arena.pool_allocator(),   //
+            memory_arena.pool_allocator(),
             config,
             vulkan_instance,
             wsi_context,
@@ -241,7 +241,7 @@ Context::Context(
       m_pipeline_layout{
           kiln::gfx::vulkan::check_result(
               render_device.logical_device().createPipelineLayout({})
-          )   //
+          ),
       },
       m_shader_module{
           *kiln::gfx::renderer::ShaderModule::load_from_file(
@@ -249,7 +249,7 @@ Context::Context(
                   .parent_path()
               / "shaders"
               / "triangle.spv"
-          )   //
+          ),
       },
       m_pipeline{
           kiln::gfx::renderer::GraphicsPipelineBuilder{
@@ -266,7 +266,7 @@ Context::Context(
               render_device,
               *m_render_queue_provider_ref.get().graphics_queue(),
               m_number_of_frames
-          )   //
+          ),
       },
       m_graphics_command_buffers{
           allocate_command_buffers(allocator, m_graphics_command_pools)
@@ -279,7 +279,7 @@ Context::Context(
               allocator,
               render_device,
               m_surface.number_of_images()
-          )   //
+          ),
       },
       m_render_finished_fences{
           create_per_frame_fences(allocator, render_device, m_number_of_frames)
@@ -360,10 +360,10 @@ auto Context::render(std::pmr::memory_resource& transient_memory_resource) -> vo
     const kiln::gfx::renderer::RenderPass render_pass{
         render_area,
         std::array{
-                   kiln::gfx::renderer::ColorAttachment{
+            kiln::gfx::renderer::ColorAttachment{
                 m_surface.image_view_at(*swapchain_image_index),
             }
-                .set_clear_value(std::array{ 0.01f, 0.01f, 0.01f, 1.f }),   //
+                .set_clear_value(std::array{ 0.01f, 0.01f, 0.01f, 1.f })   //
         }
     };
     graphics_command_buffer.record_render_pass_start(render_pass);

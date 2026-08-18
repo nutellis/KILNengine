@@ -57,7 +57,7 @@ Renderer::Renderer(
     const bool                          disable_culling
 )
     : Renderer{
-          std::allocator_arg,   //
+          std::allocator_arg,
           std::pmr::get_default_resource(),
           device,
           queue_provider,
@@ -276,8 +276,10 @@ const auto shader_kernel_directory{
 [[nodiscard]]
 auto pick_depth_format(const vk::raii::PhysicalDevice& physical_device) -> vk::Format
 {
-    for (const vk::Format format :
-         { vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint })
+    for (
+        const vk::Format format :
+        { vk::Format::eD32SfloatS8Uint, vk::Format::eD24UnormS8Uint }
+    )
     {
         if (physical_device.getFormatProperties2(format)
                 .formatProperties.optimalTilingFeatures
@@ -379,11 +381,7 @@ Renderer::Renderer(
           create_per_frame_semaphores(allocator, device, number_of_frames_in_flight)
       },
       m_render_finished_semaphores{
-          create_per_frame_semaphores(
-              allocator,
-              device,
-              number_of_swapchain_images
-          )   //
+          create_per_frame_semaphores(allocator, device, number_of_swapchain_images)
       },
       m_render_finished_fences{
           create_per_frame_fences(allocator, device, number_of_frames_in_flight)
@@ -564,8 +562,8 @@ auto frustum_from(const Camera& camera, const double aspect_ratio) -> shaders::F
         ),
     };
     const glm::mat4x4 view_projection_matrix{ projection_matrix * view_matrix };
-    const auto        extract_plane = [&view_projection_matrix]   //
-        (const int row, const float sign) -> shaders::Plane
+    const auto        extract_plane
+        = [&view_projection_matrix](const int row, const float sign) -> shaders::Plane
     {
         const glm::vec4 p{
             view_projection_matrix[0][3] + sign * view_projection_matrix[0][row],
@@ -1009,13 +1007,12 @@ auto Renderer::draw(
     const kiln::gfx::renderer::RenderPass render_pass{
         render_area,
         std::array{
-                   kiln::gfx::renderer::ColorAttachment{
-                   surface.image_view_at(swapchain_image_index),
-                   }
-                   .set_clear_value(std::array{ 0.01f, 0.01f, 0.01f, 1.f }),   //
+            kiln::gfx::renderer::ColorAttachment{
+                surface.image_view_at(swapchain_image_index),
+            }
+                .set_clear_value(std::array{ 0.01f, 0.01f, 0.01f, 1.f })   //
         },
-        kiln::gfx::renderer::DepthAttachment{ m_depth_image_view }
-        .set_clear_value(1)
+        kiln::gfx::renderer::DepthAttachment{ m_depth_image_view }.set_clear_value(1)
     };
     command_buffer.record_render_pass_start(render_pass);
 

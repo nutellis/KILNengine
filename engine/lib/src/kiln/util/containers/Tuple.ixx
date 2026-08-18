@@ -2,6 +2,7 @@ module;
 
 #include <concepts>
 #include <cstddef>
+#include <functional>
 #include <type_traits>
 #include <utility>
 
@@ -61,7 +62,7 @@ public:
             -> forward_like_t<Ts... [index_T], Self_T>
         {
             return std::forward_like<Self_T>(
-                self.internal::template Node<index_T, Ts...[index_T]>::value
+                self.template Node<index_T, Ts...[index_T]>::value
             );
         }
 
@@ -72,8 +73,18 @@ public:
             -> forward_like_t<T, Self_T>
     {
         constexpr static std::size_t index{ index_of_v<T, Ts...> };
-        return std::forward_like<Self_T>(
-            self.internal::template Node<index, Ts...[index]>::value
+        return std::forward_like<Self_T>(self.template Node<index, Ts...[index]>::value);
+    }
+
+    template <typename F, typename Self_T>
+        requires std::derived_from<std::remove_cvref_t<Self_T>, TupleImpl>
+    friend auto apply(F&& func, Self_T&& self) -> decltype(auto)
+    {
+        return std::invoke(
+            std::forward<F>(func),
+            std::forward_like<Self_T>(
+                self.template Node<indices_T, Ts...[indices_T]>::value...
+            )
         );
     }
 };
@@ -85,5 +96,12 @@ class Tuple : public internal::TupleImpl<std::make_index_sequence<sizeof...(Ts)>
 public:
     using internal::TupleImpl<std::make_index_sequence<sizeof...(Ts)>, Ts...>::TupleImpl;
 };
+
+export template <typename... Ts>
+[[nodiscard]]
+constexpr auto forward_as_tuple(Ts&&... values) noexcept -> Tuple<Ts&&...>
+{
+    return Tuple<Ts&&...>{ std::forward<Ts>(values)... };
+}
 
 }   // namespace kiln::util

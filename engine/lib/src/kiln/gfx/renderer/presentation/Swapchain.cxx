@@ -84,7 +84,7 @@ auto create_swapchain(
                 device.physical_device().getSurfacePresentModesKHR(surface)   //
             ),
             vsync
-        )   //
+        ),
     };
     const uint32_t image_count{
         surface_capabilities.maxImageCount == 0
@@ -92,7 +92,7 @@ auto create_swapchain(
             : std::min(
                   std::max(number_of_frames, surface_capabilities.minImageCount),
                   surface_capabilities.maxImageCount
-              )   //
+              )
     };
 
     const vk::SwapchainCreateInfoKHR create_info{
@@ -174,7 +174,7 @@ Swapchain::Swapchain(
               enable_vsync,
               surface_format,
               old_swapchain
-          )   //
+          ),
       },
       m_swapchain_images{ vulkan::check_result(m_swapchain.getImages()) },
       m_swapchain_image_views{
@@ -182,7 +182,7 @@ Swapchain::Swapchain(
               device.logical_device(),
               surface_format.format,
               m_swapchain_images
-          )   //
+          ),
       }
 {
 }

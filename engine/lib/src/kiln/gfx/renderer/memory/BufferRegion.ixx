@@ -2,8 +2,8 @@ module;
 
 #include <functional>
 
-#include "kiln/util/memory/lifetimebound.hpp"
 #include "kiln/util/contract_macros.hpp"
+#include "kiln/util/memory/lifetimebound.hpp"
 
 export module kiln.gfx.renderer.memory.BufferRegion;
 
@@ -40,9 +40,7 @@ public:
 
 export class BufferRegion : BufferRegionPrecondition {
 public:
-    explicit(false) BufferRegion(   //
-        kiln_lifetimebound Buffer& buffer
-    )
+    explicit(false) BufferRegion(kiln_lifetimebound Buffer& buffer)
         : m_buffer{ buffer },
           m_offset{ 0 },
           m_size{ buffer.size() }

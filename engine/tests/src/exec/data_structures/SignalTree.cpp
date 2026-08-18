@@ -9,7 +9,7 @@
 
 #include <catch2/catch_test_macros.hpp>
 
-import kiln.exec.data_structures.SignalTree;
+import kiln.exec_old.data_structures.SignalTree;
 import kiln.util.reflection;
 
 namespace kiln::exec {
@@ -41,7 +41,7 @@ TEST_CASE(test_name)
                     for (const auto index :
                          std::views::iota(0u, signal_tree.number_of_leaves()))
                     {
-                        signal_tree.try_set_one(index);
+                        signal_tree.set(index);
                     }
 
                     std::vector<bool> index_checks(signal_tree.number_of_leaves());
@@ -98,7 +98,7 @@ TEST_CASE(test_name)
                             {
                                 if (index % number_of_threads == id)
                                 {
-                                    signal_tree.try_set_one(index);
+                                    signal_tree.set(index);
                                     ++number_of_signals;
                                 }
                             }
@@ -159,7 +159,7 @@ TEST_CASE(test_name)
                     for (const auto index :
                          std::views::iota(0u, signal_tree.number_of_leaves()))
                     {
-                        signal_tree.try_set_one(index);
+                        signal_tree.set(index);
                     }
 
                     for (const auto i :
@@ -190,7 +190,7 @@ TEST_CASE(test_name)
                     for (const auto index :
                          std::views::iota(0u, signal_tree.number_of_leaves()))
                     {
-                        const bool success = signal_tree.try_set_one(index);
+                        const bool success = signal_tree.set(index);
                         REQUIRE(success);
                     }
                     REQUIRE(signal_tree.full());
@@ -280,7 +280,7 @@ TEST_CASE(test_name)
                         for (const auto _ :
                              std::views::repeat(std::ignore, work_per_thread))
                         {
-                            while (!signal_tree.try_set_one(id))
+                            while (!signal_tree.set(id))
                                 ;
                         }
                     };

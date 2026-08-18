@@ -273,7 +273,7 @@ auto Indirect<T>::operator=(const Indirect& other) -> Indirect&
         [&] noexcept -> void
         {
             m_allocator.delete_object(new_handle);   //
-        }   //
+        },
     };
 
     if (m_handle != nullptr)

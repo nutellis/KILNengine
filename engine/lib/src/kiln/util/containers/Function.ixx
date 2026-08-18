@@ -63,6 +63,10 @@ concept storable_in_function_c
    // TODO: use std::copyable when lambdas become copy assignable
    && (Function_T::is_move_only() || std::copy_constructible<T>);
 
+export template <typename T, typename Function_T>
+concept decays_to_storable_in_function_c
+    = storable_in_function_c<std::decay_t<T>, Function_T>;
+
 export template <decayed_c T, typename Function_T>
     requires storable_in_function_c<T, std::remove_cvref_t<Function_T>>
 [[nodiscard]]

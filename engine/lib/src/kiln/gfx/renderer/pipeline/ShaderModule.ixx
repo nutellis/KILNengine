@@ -62,7 +62,7 @@ auto ShaderModule::code() const noexcept -> std::span<const uint32_t>
 {
     return std::span<const uint32_t>{
         reinterpret_cast<const uint32_t*>(m_code.data()),
-        m_code.size() / (sizeof(uint32_t) / sizeof(std::byte))   //
+        m_code.size() / (sizeof(uint32_t) / sizeof(std::byte)),
     };
 }
 

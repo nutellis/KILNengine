@@ -422,9 +422,11 @@ auto GltfModelLoader::Manifest::write_instance_draw_command_indices(
         };
         const uint32_t mesh_instance_count{ m_per_mesh_instance_counts[mesh_index] };
 
-        for (uint32_t primitive_index{};
-             primitive_index < model.meshes[mesh_index].primitives.size();
-             ++primitive_index)
+        for (
+            uint32_t primitive_index{};
+            primitive_index < model.meshes[mesh_index].primitives.size();
+            ++primitive_index
+        )
         {
             const uint32_t instance_offset{
                 m_per_mesh_instance_offsets[mesh_index]
@@ -674,8 +676,10 @@ auto GltfModelLoader::Manifest::preprocess(
             if (node.meshIndex.has_value())
             {
                 uint32_t valid_primitive_count{};
-                for (const fastgltf::Primitive& primitive :
-                     model.meshes[*node.meshIndex].primitives)
+                for (
+                    const fastgltf::Primitive& primitive :
+                    model.meshes[*node.meshIndex].primitives
+                )
                 {
                     if (primitive.findAttribute("POSITION")
                         == primitive.attributes.cend())
@@ -730,9 +734,11 @@ auto GltfModelLoader::Manifest::preprocess(
     manifest.m_normal_matrices.reserve(manifest.m_instance_count);
     manifest.m_transformed_sphere_bounding_volumes.resize(manifest.m_instance_count);
 
-    for (uint32_t original_material_index{};
-         original_material_index < model.materials.size();
-         ++original_material_index)
+    for (
+        uint32_t original_material_index{};
+        original_material_index < model.materials.size();
+        ++original_material_index
+    )
     {
         if (const uint32_t material_index{
                 manifest.m_material_indices[original_material_index] };
@@ -839,8 +845,10 @@ auto GltfModelLoader::Manifest::process(
     }
 
     uint32_t valid_primitive_count{};
-    for (const auto [primitive_index, primitive] :
-         std::views::enumerate(model.meshes[mesh_index].primitives))
+    for (
+        const auto [primitive_index, primitive] :
+        std::views::enumerate(model.meshes[mesh_index].primitives)
+    )
     {
         const fastgltf::Attribute* position_attribute{
             primitive.findAttribute("POSITION"),
@@ -1131,8 +1139,10 @@ auto GltfModelLoader::Manifest::element_writer_from(
                 );
             }
             // Flip Y and Z axis to match Vulkan's coordinate system
-            else if (element_type == SupportedElementType::ePosition
-                     || element_type == SupportedElementType::eNormal)
+            else if (
+                element_type == SupportedElementType::ePosition
+                || element_type == SupportedElementType::eNormal
+            )
             {
                 const std::span vec3_out{
                     reinterpret_cast<glm::vec3*>(

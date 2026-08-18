@@ -9,6 +9,7 @@ import kiln.util.containers.Any;
 namespace kiln::util {
 
 export using util::storable_in_any_c;
+export using util::decays_to_storable_in_any_c;
 
 export using util::default_any_size;
 export using util::default_any_alignment;

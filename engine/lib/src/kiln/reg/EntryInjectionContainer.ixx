@@ -134,10 +134,9 @@ struct ErasedEntryInjectionLambda {
                 return builders.at<StrippedDependency>();
             }
         }
-        else if constexpr (requires {
-                               requires EntryTraits<
-                                   StrippedDependency>::is_configuration_entry;
-                           })
+        else if constexpr (
+            requires { requires EntryTraits<StrippedDependency>::is_configuration_entry; }
+        )
         {
             if constexpr (util::specialization_of_c<Dependency_T, util::OptionalRef>)
             {

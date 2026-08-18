@@ -47,7 +47,7 @@ auto create_window(const Context&, const char* const title, const WindowSettings
                                     .resolution;
                             },
                         }
-                    );   //
+                    );
                 },
             },
             settings

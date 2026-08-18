@@ -265,10 +265,12 @@ constexpr auto StructureChain<RootStruct_T>::matches(
         return false;
     }
 
-    for (const auto* supported_feature_struct{
-             static_cast<const vk::BaseInStructure*>(physical_device_features.pNext) };
-         supported_feature_struct != nullptr;
-         supported_feature_struct = supported_feature_struct->pNext)
+    for (
+        const auto* supported_feature_struct{
+            static_cast<const vk::BaseInStructure*>(physical_device_features.pNext) };
+        supported_feature_struct != nullptr;
+        supported_feature_struct = supported_feature_struct->pNext
+    )
     {
         if (const auto iter = m_chain.find(supported_feature_struct->sType);
             iter != m_chain.cend()
@@ -355,10 +357,12 @@ constexpr auto StructureChain<RootStruct_T>::erase_unsupported_features(
 
     bool needs_reconnect{};
 
-    for (const auto* incoming_feature_struct{
-             static_cast<const vk::BaseInStructure*>(supported_features.pNext) };
-         incoming_feature_struct != nullptr;
-         incoming_feature_struct = incoming_feature_struct->pNext)
+    for (
+        const auto* incoming_feature_struct{
+            static_cast<const vk::BaseInStructure*>(supported_features.pNext) };
+        incoming_feature_struct != nullptr;
+        incoming_feature_struct = incoming_feature_struct->pNext
+    )
     {
         if (const auto iter = m_chain.find(incoming_feature_struct->sType);
             iter != m_chain.end())
@@ -417,10 +421,12 @@ constexpr auto StructureChain<RootStruct_T>::erase_features(
 
     bool needs_reconnect{};
 
-    for (const auto* incoming_feature_struct{
-             static_cast<const vk::BaseInStructure*>(physical_device_features.pNext) };
-         incoming_feature_struct != nullptr;
-         incoming_feature_struct = incoming_feature_struct->pNext)
+    for (
+        const auto* incoming_feature_struct{
+            static_cast<const vk::BaseInStructure*>(physical_device_features.pNext) };
+        incoming_feature_struct != nullptr;
+        incoming_feature_struct = incoming_feature_struct->pNext
+    )
     {
         if (const auto iter = m_chain.find(incoming_feature_struct->sType);
             iter != m_chain.end())
@@ -467,8 +473,7 @@ template <util::naked_c RootStruct_T>
 constexpr auto StructureChain<RootStruct_T>::connect() -> void
 {
     std::reference_wrapper<NextPtr> previous_pointer{ m_root_struct.pNext };
-    for (ErasedStructureChainNode<RootStruct_T>& next_struct :
-         std::views::values(m_chain))
+    for (ErasedStructureChainNode<RootStruct_T>& next_struct : std::views::values(m_chain))
     {
         previous_pointer.get() = next_struct->address();
         previous_pointer       = next_struct->next_pointer();

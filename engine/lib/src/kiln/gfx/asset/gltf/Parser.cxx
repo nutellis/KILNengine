@@ -36,11 +36,7 @@ auto Parser::load(const std::filesystem::path& filepath, const bool generate_ind
     }
 
     fastgltf::Expected<fastgltf::Asset> asset{
-        m_parser.loadGltf(
-            file,
-            filepath.parent_path(),
-            make_options(generate_indices)   //
-        ),
+        m_parser.loadGltf(file, filepath.parent_path(), make_options(generate_indices)),
     };
     if (asset.error() != fastgltf::Error::None)
     {

@@ -29,7 +29,7 @@ const auto logger{
         result->set_level(spdlog::level::level_enum::debug);
         result->set_pattern("%^[%n](%r) %l:\n- %v%$");
         return result;
-    }()   //
+    }(),
 };
 
 [[nodiscard]]
@@ -62,9 +62,11 @@ VKAPI_ATTR auto VKAPI_CALL default_debug_messenger_callback(
     if (pCallbackData->queueLabelCount > 0)
     {
         message << "- Queue labels:\n";
-        for (const char* label_name :
-             std::span{ pCallbackData->pQueueLabels, pCallbackData->queueLabelCount }
-                 | std::views::transform(&vk::DebugUtilsLabelEXT::pLabelName))
+        for (
+            const char* label_name :
+            std::span{ pCallbackData->pQueueLabels, pCallbackData->queueLabelCount }
+                | std::views::transform(&vk::DebugUtilsLabelEXT::pLabelName)
+        )
         {
             message << std::format("\t- \"{}\"\n", label_name);
         }
@@ -73,9 +75,11 @@ VKAPI_ATTR auto VKAPI_CALL default_debug_messenger_callback(
     if (pCallbackData->cmdBufLabelCount > 0)
     {
         message << "- Command buffer labels:\n";
-        for (const char* label_name :
-             std::span{ pCallbackData->pCmdBufLabels, pCallbackData->cmdBufLabelCount }
-                 | std::views::transform(&vk::DebugUtilsLabelEXT::pLabelName))
+        for (
+            const char* label_name :
+            std::span{ pCallbackData->pCmdBufLabels, pCallbackData->cmdBufLabelCount }
+                | std::views::transform(&vk::DebugUtilsLabelEXT::pLabelName)
+        )
         {
             message << std::format("\t- \"{}\"\n", label_name);
         }
@@ -84,11 +88,13 @@ VKAPI_ATTR auto VKAPI_CALL default_debug_messenger_callback(
     if (pCallbackData->objectCount > 0)
     {
         message << "- Objects:\n";
-        for (const vk::DebugUtilsObjectNameInfoEXT& object_info :
-             std::span{ pCallbackData->pObjects, pCallbackData->objectCount })
+        for (
+            const vk::DebugUtilsObjectNameInfoEXT& object_info :
+            std::span{ pCallbackData->pObjects, pCallbackData->objectCount }
+        )
         {
             const char* const object_name{
-                object_info.pObjectName != nullptr ? object_info.pObjectName : ""   //
+                object_info.pObjectName != nullptr ? object_info.pObjectName : "",
             };
             message << std::format(
                 "\t- {} ({}) {}\n",
@@ -129,10 +135,10 @@ public:
         constexpr static vk::DebugUtilsMessengerCreateInfoEXT debug_messenger_create_info{
             .messageSeverity = vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning
                              | vk::DebugUtilsMessageSeverityFlagBitsEXT::eError,
-            .messageType = vk::DebugUtilsMessageTypeFlagBitsEXT::eDeviceAddressBinding
-                         | vk::DebugUtilsMessageTypeFlagBitsEXT::eGeneral
-                         | vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance
-                         | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation,
+            .messageType     = vk::DebugUtilsMessageTypeFlagBitsEXT::eDeviceAddressBinding
+                             | vk::DebugUtilsMessageTypeFlagBitsEXT::eGeneral
+                             | vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance
+                             | vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation,
             .pfnUserCallback = default_debug_messenger_callback,
         };
 

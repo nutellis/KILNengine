@@ -291,7 +291,9 @@ auto EntryBuilderContainer::try_emplace(Args_T&&... args) -> bool
          &entry_dependency_hashes]<typename Dependency_T> -> void
         {
             using StrippedDependency = strip_dependency_t<Dependency_T>;
-            if constexpr (std::is_base_of_v<internal::EntryBuilderBase, StrippedDependency>)
+            if constexpr (
+                std::is_base_of_v<internal::EntryBuilderBase, StrippedDependency>
+            )
             {
                 builder_dependency_hashes.push_back(
                     util::hash_u64<

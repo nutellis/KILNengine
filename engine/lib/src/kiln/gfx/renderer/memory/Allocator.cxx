@@ -275,7 +275,7 @@ auto Allocator::create_image(
     const VkResult    result = vmaCreateImage(
         m_handle.get(),
         reinterpret_cast<
-               const std::remove_cvref_t<decltype(image_create_info)>::NativeType*>(
+            const std::remove_cvref_t<decltype(image_create_info)>::NativeType*>(
             &image_create_info
         ),
         &allocation_create_info,

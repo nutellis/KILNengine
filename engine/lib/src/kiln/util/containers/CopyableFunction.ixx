@@ -10,6 +10,7 @@ import kiln.util.containers.Function;
 namespace kiln::util {
 
 export using util::storable_in_function_c;
+export using util::decays_to_storable_in_function_c;
 
 export template <
     function_c  Signature_T,

@@ -41,6 +41,9 @@ concept storable_in_any_c = any_c<Any_T>
                          && (Any_T::is_move_only() || std::copyable<T>)
                          && Any_T::template adheres_to_policy<T>();
 
+export template <typename T, typename Any_T>
+concept decays_to_storable_in_any_c = storable_in_any_c<std::decay_t<T>, Any_T>;
+
 export consteval auto default_any_size() -> std::size_t
 {
     return 4 * sizeof(void*);

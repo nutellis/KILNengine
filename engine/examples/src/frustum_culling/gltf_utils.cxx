@@ -151,8 +151,10 @@ auto aabb_of(const fastgltf::Asset& model, const size_t scene_index)
                 return;
             }
 
-            for (const fastgltf::Primitive& primitive :
-                 model.meshes[*node.meshIndex].primitives)
+            for (
+                const fastgltf::Primitive& primitive :
+                model.meshes[*node.meshIndex].primitives
+            )
             {
                 const fastgltf::Attribute* position_attribute{
                     primitive.findAttribute("POSITION")
