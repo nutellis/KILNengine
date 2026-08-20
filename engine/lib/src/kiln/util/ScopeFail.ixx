@@ -50,7 +50,7 @@ constexpr ScopeFail<Rollback_T>::~ScopeFail<Rollback_T>()
 #endif
     if !consteval
     {
-        if (m_uncaught_exceptions > std::uncaught_exceptions())
+        if (m_uncaught_exceptions < std::uncaught_exceptions())
         {
             std::invoke(m_rollback);
         }
