@@ -74,9 +74,7 @@ WindowCommand::WindowCommand(
 )
     requires(!std::is_same_v<std::remove_cvref_t<F>, WindowCommand>)
          && std::constructible_from<Command, F&&>
-    : m_command{
-          std::make_obj_using_allocator<Command>(allocator, std::forward<F>(command))
-      }
+    : m_command{ std::allocator_arg, allocator, std::forward<F>(command) }
 {
 }
 
