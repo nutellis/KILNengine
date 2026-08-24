@@ -53,7 +53,7 @@ public:
              && (sizeof...(Us) != 1 || !std::same_as<std::decay_t<Us...[0]>, TupleImpl>)
              && (std::constructible_from<Ts, Us &&> && ...)
     explicit constexpr TupleImpl(Us&&... values)
-        : Node<indices_T, Ts>{ std::forward<Us>(values) }...
+        : Node<indices_T, Ts>{ .value{ std::forward<Us>(values) } }...
     {
     }
 
