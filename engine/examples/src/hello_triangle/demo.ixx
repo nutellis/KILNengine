@@ -8,7 +8,20 @@ export module examples.hello_triangle;
 
 import vulkan;
 
-import kiln;
+import kiln.app.config.Config;
+import kiln.gfx.renderer.command.GraphicsCommandBuffer;
+import kiln.gfx.renderer.command.GraphicsCommandPool;
+import kiln.gfx.renderer.command.QueueProvider;
+import kiln.gfx.renderer.device.Device;
+import kiln.gfx.renderer.pipeline.GraphicsPipeline;
+import kiln.gfx.renderer.pipeline.ShaderModule;
+import kiln.gfx.renderer.presentation.RenderSurface;
+import kiln.gfx.vulkan.Instance;
+import kiln.reg.BuildDirector;
+import kiln.reg.EntryTraits;
+import kiln.wsi.Context;
+import kiln.wsi.Size;
+import kiln.wsi.Window;
 
 namespace demo {
 

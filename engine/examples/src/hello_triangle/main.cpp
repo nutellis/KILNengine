@@ -3,7 +3,13 @@
 #include <print>
 #include <thread>
 
-import kiln;
+import kiln.app.App;
+import kiln.app.create;
+import kiln.gfx.renderer.device.Device;
+import kiln.gfx.vulkan.DebugMessenger;
+import kiln.wsi.Context;
+import kiln.wsi.event.Key;
+import kiln.wsi.event.wait_events;
 
 import examples.hello_triangle;
 

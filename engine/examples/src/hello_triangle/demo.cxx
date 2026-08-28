@@ -11,7 +11,23 @@ module examples.hello_triangle;
 
 import vulkan;
 
-import kiln;
+import kiln.app.memory.MemoryArena;
+import kiln.gfx.renderer.command.CommandBufferUsageFlags;
+import kiln.gfx.renderer.command.CommandPoolFlags;
+import kiln.gfx.renderer.command.DependencyInfo;
+import kiln.gfx.renderer.command.GraphicsQueueRef;
+import kiln.gfx.renderer.command.PresentQueueRef;
+import kiln.gfx.renderer.command.QueueProviderBuilder;
+import kiln.gfx.renderer.command.QueueType;
+import kiln.gfx.renderer.command.SubmitInfo;
+import kiln.gfx.renderer.pipeline.ColorAttachment;
+import kiln.gfx.renderer.pipeline.GraphicsPipelineBuilder;
+import kiln.gfx.renderer.pipeline.PipelineContextBuilder;
+import kiln.gfx.renderer.pipeline.RenderPass;
+import kiln.gfx.renderer.presentation.PresentationContextBuilder;
+import kiln.gfx.vulkan.result.check_result;
+import kiln.reg.BuildableEntryBuilder;
+import kiln.wsi.WindowedWindowSettings;
 
 namespace demo {
 
