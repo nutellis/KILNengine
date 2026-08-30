@@ -2,6 +2,7 @@ module;
 
 #include <cstdint>
 #include <memory_resource>
+#include <string>
 #include <string_view>
 
 export module kiln.reg.DependencyChainNode;
