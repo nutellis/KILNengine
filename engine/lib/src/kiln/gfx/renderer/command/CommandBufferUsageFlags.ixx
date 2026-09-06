@@ -8,8 +8,7 @@ import kiln.util.EnumMask;
 
 namespace kiln::gfx::renderer {
 
-export enum struct CommandBufferUsageFlags : uint8_t
-{
+export enum struct CommandBufferUsageFlags : uint8_t {
     eNone     = 0,
     eReusable = 1,
 };

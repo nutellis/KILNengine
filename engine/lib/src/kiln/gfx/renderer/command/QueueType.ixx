@@ -8,8 +8,7 @@ import kiln.util.EnumMask;
 
 namespace kiln::gfx::renderer {
 
-export enum struct QueueType : uint32_t
-{
+export enum struct QueueType : uint32_t {
     eGraphics             = 1 << 0,
     eCompute              = 1 << 1,
     eHostToDeviceTransfer = 1 << 2,

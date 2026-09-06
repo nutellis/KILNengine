@@ -68,7 +68,9 @@ TEST_CASE("kiln::gfx::vulkan::check_result")
 
             REQUIRE(
                 std::holds_alternative<TypedResultCode<vk::Result::eErrorDeviceLost>>(
-                    check_result<vk::Result::eErrorDeviceLost>(vk::Result::eErrorDeviceLost)
+                    check_result<vk::Result::eErrorDeviceLost>(
+                        vk::Result::eErrorDeviceLost
+                    )
                 )
             );
         }
@@ -201,7 +203,8 @@ TEST_CASE("kiln::gfx::vulkan::check_result")
                 VulkanError
             );
 
-            std::ignore = check_result(std::expected<vk::Instance, vk::Result>{ nullptr });
+            std::ignore
+                = check_result(std::expected<vk::Instance, vk::Result>{ nullptr });
         }
 
         SECTION("expected result code")

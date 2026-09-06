@@ -243,7 +243,7 @@ TEST_CASE("kiln::util::Any")
                 -> void* override
             {
                 m_counter += bytes;
-                return std::pmr::new_delete_resource()->allocate(bytes, alignment);
+                return std::pmr::get_default_resource()->allocate(bytes, alignment);
             }
 
             auto do_deallocate(
@@ -252,14 +252,14 @@ TEST_CASE("kiln::util::Any")
                 const std::size_t alignment
             ) -> void override
             {
-                std::pmr::new_delete_resource()->deallocate(p, bytes, alignment);
+                std::pmr::get_default_resource()->deallocate(p, bytes, alignment);
             }
 
             [[nodiscard]]
             auto do_is_equal(const std::pmr::memory_resource& other) const noexcept
                 -> bool override
             {
-                return std::pmr::new_delete_resource()->is_equal(other);
+                return std::pmr::get_default_resource()->is_equal(other);
             }
         };
 

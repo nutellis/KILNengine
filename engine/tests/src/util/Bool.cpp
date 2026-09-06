@@ -50,9 +50,7 @@ TEST_CASE("kiln::util::Bool")
             [[maybe_unused]]
             auto optional{ boolean.transform([] -> const float& { return other_value; }) };
 
-            STATIC_REQUIRE(
-                std::is_same_v<decltype(optional), OptionalRef<const float>>
-            );
+            STATIC_REQUIRE(std::is_same_v<decltype(optional), OptionalRef<const float>>);
         }
 
         SECTION("with value")
