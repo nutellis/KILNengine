@@ -101,8 +101,19 @@ private:
     ) -> result_type_t<std::expected<Value_T, vk::Result>>;
 };
 
+export template <typename Result_T>
+constexpr auto check_result(Result_T&& result)
+{
+    constexpr static CheckResult<> check;
+    return check(std::move(result));
+}
+
 export template <vk::Result... expected_result_codes_T, typename Result_T>
-    requires((expected_result_codes_T != vk::Result::eSuccess) && ...)
+    requires(
+        sizeof...(expected_result_codes_T) != 0
+        && ((expected_result_codes_T != vk::Result::eSuccess) && ...)
+    )
+[[nodiscard]]
 constexpr auto check_result(Result_T&& result)
 {
     constexpr static CheckResult<expected_result_codes_T...> check;
