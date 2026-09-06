@@ -174,7 +174,7 @@ EventBuffer<Event_T>::EventBuffer(EventBuffer&& other, const allocator_type& all
 
 template <event_c Event_T>
 EventBuffer<Event_T>::EventBuffer(std::allocator_arg_t, const allocator_type& allocator)
-    : m_events{ allocator },
+    : m_events(allocator),
       m_timestamps{ allocator }
 {
 }
